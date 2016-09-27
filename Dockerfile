@@ -9,4 +9,7 @@ RUN apk add --no-cache wget && \
 	unzip -q sonar-scanner.zip && \
 	rm sonar-scanner.zip
 
-ENTRYPOINT [ "/sonar-scanner/sonar-scanner-$SONAR_SCANNER_VERSION/bin/sonar-scanner" ]
+ENV SONAR_SCANNER_HOME=/sonar-scanner/sonar-scanner-$SONAR_SCANNER_VERSION
+ENV PATH $PATH:/sonar-scanner/sonar-scanner-$SONAR_SCANNER_VERSION/bin
+
+ENTRYPOINT [ "sonar-scanner" ]
